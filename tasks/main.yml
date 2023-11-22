@@ -1,0 +1,39 @@
+---
+# tasks file for starknet-pathfinder-ansible
+
+- name: Install required apt packages
+  become: true
+  apt:
+    name:
+      - git
+
+- name: Clone pathfinder repo
+  git:
+    repo: 'https://github.com/eqlabs/pathfinder'
+    dest: '{{install_dir}}'
+
+- name: Create pathfinder directory
+  ansible.builtin.file:
+    path: '{{install_dir}}/pathfinder'
+    state: directory
+    mode: '0755'
+
+- name: Generate pathfinder-var.env
+  template:
+    src: pathfinder-var.env.j2
+    dest: '{{install_dir}}/pathfinder-var.env'
+    mode: '0644'
+
+- name: Restart docker compose
+  become: true
+  docker_compose:
+    project_src: '{{install_dir}}'
+    restarted: yes
+  timeout: 1200
+  retries: 5
+  delay: 10
+  register: result
+  until: result is not failed
+
+
+
