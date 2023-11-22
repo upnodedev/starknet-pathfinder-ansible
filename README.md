@@ -19,11 +19,13 @@ Dependencies
 Example Playbook
 ----------------
 
+```yaml
   - hosts: servers
     roles:
        - role: starknet-pathfinder-ansible
     vars:
-      starknet_pathfinder_l1_rpc: 'https://eth-goerli.g.alchemy.com/v2/...<ALCHEMY_API_KEY>...'           
+      starknet_pathfinder_l1_rpc: 'https://eth-goerli.g.alchemy.com/v2/...<ALCHEMY_API_KEY>...'
+```    
    
 
 License
