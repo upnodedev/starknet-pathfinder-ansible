@@ -13,10 +13,11 @@
     dest: '{{install_dir}}'
 
 - name: Create pathfinder directory
-  ansible.builtin.file:
+  file:
     path: '{{install_dir}}/pathfinder'
     state: directory
     mode: '0755'
+    owner: '{{ansible_user}}'
 
 - name: Generate pathfinder-var.env
   template:
@@ -25,7 +26,6 @@
     mode: '0644'
 
 - name: Restart docker compose
-  become: true
   docker_compose:
     project_src: '{{install_dir}}'
     restarted: yes
