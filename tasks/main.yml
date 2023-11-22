@@ -1,5 +1,4 @@
 ---
-# tasks file for starknet-pathfinder-ansible
 
 - name: Install required apt packages
   become: true

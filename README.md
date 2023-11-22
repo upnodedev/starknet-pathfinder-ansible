@@ -29,6 +29,6 @@ Example Playbook
 License
 -------
 
-BSD
+BSD 3-Clause License
 
 
