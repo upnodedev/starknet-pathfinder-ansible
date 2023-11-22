@@ -1,4 +1,4 @@
-Role Name
+Starknet Full Node Pathfinder Ansible Deployment
 =========
 
 An Ansible role to deploy a Starknet full node using Pathfinder and Docker Compose.
