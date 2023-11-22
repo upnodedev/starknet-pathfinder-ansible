@@ -10,11 +10,11 @@
 - name: Clone pathfinder repo
   git:
     repo: 'https://github.com/eqlabs/pathfinder'
-    dest: '{{install_dir}}'
+    dest: '{{starknet_pathfinder_install_dir}}'
 
 - name: Create pathfinder directory
   file:
-    path: '{{install_dir}}/pathfinder'
+    path: '{{starknet_pathfinder_install_dir}}/pathfinder'
     state: directory
     mode: '0755'
     owner: '{{ansible_user}}'
@@ -22,12 +22,12 @@
 - name: Generate pathfinder-var.env
   template:
     src: pathfinder-var.env.j2
-    dest: '{{install_dir}}/pathfinder-var.env'
+    dest: '{{starknet_pathfinder_install_dir}}/pathfinder-var.env'
     mode: '0644'
 
 - name: Restart docker compose
   docker_compose:
-    project_src: '{{install_dir}}'
+    project_src: '{{starknet_pathfinder_install_dir}}'
     restarted: yes
   timeout: 1200
   retries: 5

@@ -1,38 +1,34 @@
 Role Name
 =========
 
-A brief description of the role goes here.
-
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+An Ansible role to deploy a Starknet full node using Pathfinder and Docker Compose.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+* `starknet_pathfinder_l1_rpc` - The  url of an ethereum API RPC endpoint for the desired chain (mainnet and goerli are supported) 
+* `starknet_pathfinder_install_dir` - The directory in which to install ... (Default: pathfinder)
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+- [tobias_richter.apt_upgrade](https://github.com/tobias-richter/ansible-apt-upgrade)
+- [geerlingguy.pip](https://github.com/geerlingguy/ansible-role-pip) to install pip on the machine
+- [geerlingguy.docker](https://github.com/geerlingguy/ansible-role-docker) to install docker and docker compose on the machine
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+  - hosts: servers
+    roles:
+       - role: starknet-pathfinder-ansible
+    vars:
+      starknet_pathfinder_l1_rpc: 'https://eth-goerli.g.alchemy.com/v2/...<ALCHEMY_API_KEY>...'           
+   
 
 License
 -------
 
 BSD
 
-Author Information
-------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
