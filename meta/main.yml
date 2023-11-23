@@ -49,13 +49,16 @@ galaxy_info:
 
 dependencies: 
   - role: tobias_richter.apt_upgrade
+    become: true
     apt_upgrade: safe
   - role: geerlingguy.pip
+    become: true
     vars:
       pip_install_packages:
         - name: docker
         - name: docker-compose
   - role: geerlingguy.docker
+    become: true
     vars:
       docker_install_compose_plugin: true
       docker_users:
